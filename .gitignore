@@ -1,0 +1,32 @@
+# KiCad
+*.kicad_prl
+*-backups/
+*.kicad_sch-bak
+*.kicad_pcb-bak
+_autosave-*
+fp-info-cache
+
+# ergogen
+pcb/ergogen/output/
+node_modules/
+
+# FreeCAD
+*.FCBak
+*.FCStd1
+
+# ZMK / firmware build artifacts
+firmware/zmk/build/
+firmware/**/.west/
+firmware/tinygo/build/
+
+# Autorouter intermediates
+*.dsn
+*.ses
+*.rules
+
+# Python
+__pycache__/
+.venv/
+
+# macOS
+.DS_Store

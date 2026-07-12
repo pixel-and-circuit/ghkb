@@ -1,0 +1,30 @@
+# --- Git LFS: binary CAD / manufacturing / media assets ---
+
+# 3D models and exports
+*.step filter=lfs diff=lfs merge=lfs -text
+*.stp filter=lfs diff=lfs merge=lfs -text
+*.stl filter=lfs diff=lfs merge=lfs -text
+*.3mf filter=lfs diff=lfs merge=lfs -text
+*.wrl filter=lfs diff=lfs merge=lfs -text
+
+# FreeCAD documents (zip containers)
+*.FCStd filter=lfs diff=lfs merge=lfs -text
+
+# Images and documents
+*.png filter=lfs diff=lfs merge=lfs -text
+*.jpg filter=lfs diff=lfs merge=lfs -text
+*.jpeg filter=lfs diff=lfs merge=lfs -text
+*.gif filter=lfs diff=lfs merge=lfs -text
+*.pdf filter=lfs diff=lfs merge=lfs -text
+
+# Archives (e.g. gerber bundles)
+*.zip filter=lfs diff=lfs merge=lfs -text
+
+# --- Text normalization ---
+# KiCad and ergogen sources are plain text; keep them diffable
+*.kicad_pcb text eol=lf
+*.kicad_sch text eol=lf
+*.kicad_pro text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.md text eol=lf
