@@ -10,9 +10,9 @@ Phase 1: Build a Reliable Daily Driver
 
 Develop a fully functional wireless split keyboard featuring:
 
-* Custom PCB designed with KiCad
+* Custom PCB designed with KiCad (single reversible design shared by both halves)
 * Custom 3D-printed enclosure
-* MX-compatible mechanical switches
+* MX-compatible mechanical switches on hotswap sockets
 * Battery-powered operation
 * Bluetooth Low Energy (BLE)
 * ZMK firmware
@@ -22,6 +22,24 @@ Controller strategy: the first prototype targets an off-the-shelf nRF52840
 controller module (e.g. Nice!Nano) socketed onto the PCB. Designing a fully
 custom controller—placing the nRF52840 QFN/BGA package directly on the board—is
 a later, optional goal once the socketed design is validated.
+
+Hardware design decisions:
+
+* Layout: 42 keys — a 3x6 column-staggered matrix plus a 3-key thumb cluster
+  per half (Corne-style), with an optional EC11 rotary encoder position.
+* PCB: one reversible PCB serves both halves (components mount on the front
+  for one half and on the back for the other), halving design and
+  manufacturing effort.
+* Switches: MX hotswap sockets (Kailh), so the prototype can be reworked
+  without desoldering.
+* Display: none. A display only shows status (battery, layer, BLE profile)
+  and is not needed for keyboard operation; omitting it saves cost, battery,
+  and three GPIOs kept as spares.
+* RGB: deferred past Phase 1. Per-key RGB is battery-hostile on a wireless
+  board; at most, unpopulated footprints are reserved.
+* Layout generation: switch placement and the board outline are generated
+  with ergogen and imported into KiCad, so layout iterations stay
+  reproducible.
 
 Phase 2: Develop a TinyGo Firmware
 
@@ -61,8 +79,7 @@ Planned Features
 * Mod-Tap / Hold-Tap
 * Combo keys
 * Rotary encoder support
-* OLED display support
-* Optional RGB lighting
+* Optional RGB lighting (post-Phase 1)
 * Firmware updates via bootloader
 
 Repository Structure
@@ -81,6 +98,9 @@ progresses.
 │   ├── zmk/
 │   └── tinygo/
 ├── pcb/
+│   ├── ergogen/
+│   │   ├── config.yaml
+│   │   └── footprints/
 │   ├── keyboard.kicad_pro
 │   ├── keyboard.kicad_sch
 │   ├── keyboard.kicad_pcb
@@ -109,6 +129,7 @@ Directory	Description
 firmware/zmk	Production firmware based on ZMK.
 firmware/tinygo	Experimental TinyGo firmware implementation.
 pcb	KiCad project files, schematics, PCB layout, and custom libraries.
+pcb/ergogen	Ergogen layout source (YAML) and reversible footprint library.
 case/source	Source CAD models for the enclosure.
 case/exports	Exported manufacturing files (STEP/STL).
 plate	Switch plate designs.
@@ -117,8 +138,8 @@ bom	Bill of Materials used to build the keyboard.
 
 Roadmap
 
-* Finalize the keyboard layout
-* Design the PCB
+* Finalize the keyboard layout (42-key, 3x6+3 per half)
+* Design the PCB (single reversible board, ergogen + KiCad)
 * Design the enclosure
 * Build the first prototype
 * Bring up ZMK firmware
