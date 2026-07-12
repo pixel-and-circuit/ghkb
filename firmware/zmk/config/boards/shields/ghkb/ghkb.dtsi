@@ -61,4 +61,21 @@
         // col-gpios is intentionally left undefined here; each side
         // wires its own physical column order in ghkb_<side>.overlay.
     };
+
+    // EC11 rotary encoder: A/C are direct GPIOs (not part of the kscan
+    // matrix); the encoder's pushbutton (S1/S2) reuses the ring x thumb
+    // matrix cell and is handled in the transform above as RC(3,2)/RC(3,9).
+    encoder0: encoder0 {
+        compatible = "alps,ec11";
+        a-gpios = <&pro_micro 2 GPIO_PULL_UP>;  // P2
+        b-gpios = <&pro_micro 3 GPIO_PULL_UP>;  // P3 ("C" in config.yaml)
+        steps = <80>;
+        status = "okay";
+    };
+
+    sensors: sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&encoder0>;
+        triggers-per-rotation = <20>;
+    };
 };
