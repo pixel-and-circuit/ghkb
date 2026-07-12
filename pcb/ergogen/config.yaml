@@ -1,0 +1,192 @@
+meta:
+  name: ghkb
+  version: 0.1.0
+  author: GyeongHo Kim
+  notes: >
+    Single reversible half of the GHKB wireless split keyboard.
+    42 keys total (3x6 + 3 thumbs per half), MX hotswap, nice!nano,
+    optional EC11 encoder on a dedicated position past the thumb fan.
+    Build one PCB with components on the front for the left half, and
+    one with components on the back for the right half.
+
+units:
+  # MX spacing
+  kx: 19.05
+  ky: 19.05
+  # padded key rectangle used for the board outline
+  px: kx + 3.6
+  py: ky + 3.6
+
+points:
+  zones:
+    matrix:
+      key:
+        padding: 1ky
+        spread: 1kx
+        tags: [key]
+      columns:
+        outer:
+          key.column_net: P21
+        pinky:
+          key.column_net: P20
+        ring:
+          key.stagger: 6
+          key.column_net: P19
+        middle:
+          key.stagger: 3
+          key.column_net: P18
+        index:
+          key.stagger: -3
+          key.column_net: P15
+        inner:
+          key.stagger: -1.5
+          key.column_net: P14
+      rows:
+        bottom:
+          row_net: P7
+        home:
+          row_net: P6
+        top:
+          row_net: P5
+    thumbs:
+      key:
+        padding: 1ky
+        spread: 1kx
+        tags: [key]
+      anchor:
+        ref: matrix_middle_bottom
+        shift: [0.25kx, -1.15ky]
+      columns:
+        near:
+          key.column_net: P18
+        home:
+          key.splay: -15
+          key.origin: [-0.5kx, -0.5ky]
+          key.column_net: P15
+        far:
+          key.splay: -15
+          key.origin: [-0.5kx, -0.5ky]
+          key.column_net: P14
+      rows:
+        thumb:
+          row_net: P8
+    # Dedicated EC11 position continuing the thumb fan. The push button
+    # occupies the otherwise unused P19 x P8 matrix intersection.
+    encoder:
+      key:
+        name: encoder
+        tags: [enc]
+        column_net: P19
+        row_net: P8
+        colrow: enc
+      anchor:
+        ref: thumbs_far_thumb
+        shift: [1.1kx, 0.15ky]
+    mcu:
+      key:
+        name: mcu
+        tags: [mcu]
+      anchor:
+        ref: matrix_inner_top
+        shift: [1.05kx + 3, -0.5ky]
+
+outlines:
+  keys:
+    - what: rectangle
+      where: [key]
+      size: [px, py]
+    - what: rectangle
+      where: [enc]
+      size: [px, py]
+  controller:
+    - what: rectangle
+      where: mcu
+      size: [26, 64]
+      adjust:
+        shift: [0, -14]
+  board:
+    - name: keys
+    - name: controller
+
+pcbs:
+  keyboard:
+    outlines:
+      main:
+        outline: board
+    footprints:
+      switch:
+        what: switch_mx
+        where: [key]
+        params:
+          reversible: true
+          hotswap: true
+          include_keycap: true
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+      diode:
+        what: diode_tht_sod123
+        where: [key]
+        adjust:
+          shift: [0, -5]
+        params:
+          reversible: true
+          include_traces_vias: true
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+      mcu:
+        what: mcu_nice_nano
+        where: mcu
+        params:
+          reversible: true
+          reverse_mount: true
+          only_required_jumpers: true
+          # P2/P3: encoder A/C, P5-P8: rows,
+          # P14/P15/P18-P21: columns (net names match param defaults)
+          # P0/P1/P4, P9/P10/P16: spare
+      battery:
+        what: battery_connector_jst_ph_2
+        where: mcu
+        adjust:
+          shift: [0, -25]
+          rotate: 180
+        params:
+          reversible: true
+      power_switch:
+        what: power_switch_smd_side
+        where: mcu
+        adjust:
+          shift: [11, -25]
+          rotate: -90
+        params:
+          reversible: true
+      reset_switch:
+        what: reset_switch_tht_top
+        where: mcu
+        adjust:
+          shift: [-8.5, -25]
+        params:
+          reversible: true
+      encoder:
+        what: rotary_encoder_ec11_ec12
+        where: [enc]
+        params:
+          reversible: true
+          # A/C on plain GPIOs (P2/P3, freed by dropping the display).
+          # P0/P1 sit behind the reversible jumper block and are too
+          # congested to route out.
+          A: P2
+          B: GND
+          C: P3
+          S1: "{{column_net}}"
+          S2: "{{colrow}}"
+      encoder_diode:
+        what: diode_tht_sod123
+        where: [enc]
+        adjust:
+          shift: [8, 0]
+          rotate: 90
+        params:
+          reversible: true
+          include_traces_vias: true
+          from: "{{colrow}}"
+          to: "{{row_net}}"
