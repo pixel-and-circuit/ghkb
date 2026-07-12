@@ -1,0 +1,10 @@
+# GitHub Actions build matrix for the ghkb ZMK firmware.
+# ghkb_left / ghkb_right shields are defined in GYE-269
+# (boards/shields/ghkb/) and don't exist yet, so this matrix
+# will fail to build until that shield lands.
+---
+include:
+  - board: nice_nano_v2
+    shield: ghkb_left
+  - board: nice_nano_v2
+    shield: ghkb_right

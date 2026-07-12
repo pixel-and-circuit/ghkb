@@ -15,9 +15,16 @@ node_modules/
 *.FCStd1
 
 # ZMK / firmware build artifacts
-firmware/zmk/build/
-firmware/**/.west/
 firmware/tinygo/build/
+
+# ZMK west workspace (topdir is firmware/zmk/ per config_path in
+# .github/workflows/build.yml). `west update` materializes module
+# directories here whose exact set depends on manifest groups
+# (zephyr/, modules/, zmk/, optional/, tools/, bootloader/, bin/, .west/, ...).
+# Ignore everything under firmware/zmk/ except our own tracked config.
+firmware/zmk/*
+!firmware/zmk/config/
+!firmware/zmk/build.yaml
 
 # Autorouter intermediates
 *.dsn
