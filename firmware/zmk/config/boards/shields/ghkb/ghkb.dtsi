@@ -1,0 +1,27 @@
+/*
+ * Copyright (c) 2026 pixel-and-circuit
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <dt-bindings/gpio/gpio.h>
+
+/ {
+    chosen {
+        zmk,kscan = &kscan0;
+    };
+
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-matrix";
+        wakeup-source;
+        diode-direction = "col2row";
+
+        row-gpios
+            = <&pro_micro 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // P5 top
+            , <&pro_micro 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // P6 home
+            , <&pro_micro 7 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // P7 bottom
+            , <&pro_micro 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // P8 thumb
+            ;
+        // col-gpios is intentionally left undefined here; each side
+        // wires its own physical column order in ghkb_<side>.overlay.
+    };
+};
