@@ -1,0 +1,12 @@
+file_format: "1"
+id: ghkb
+name: GHKB
+type: shield
+url: https://github.com/pixel-and-circuit/ghkb
+requires: [pro_micro]
+features:
+  - keys
+  - encoder
+siblings:
+  - ghkb_left
+  - ghkb_right

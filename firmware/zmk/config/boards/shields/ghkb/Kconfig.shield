@@ -1,0 +1,5 @@
+config SHIELD_GHKB_LEFT
+	def_bool $(shields_list_contains,ghkb_left)
+
+config SHIELD_GHKB_RIGHT
+	def_bool $(shields_list_contains,ghkb_right)
