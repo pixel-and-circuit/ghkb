@@ -89,6 +89,31 @@ points:
       anchor:
         ref: matrix_inner_top
         shift: [1.05kx + 3, -0.5ky]
+    # M2 NPTH mounting holes for the case (top-shell posts / lid towers).
+    # Coordinates were placed on the routed board where the Ø2.2 drill clears
+    # all copper by >=1.85mm, the post seat clears solder joints, and the
+    # under-PCB tower corridor clears hotswap sockets / MCU / battery pocket.
+    # Keep in sync with pcb/keyboard.kicad_pcb (MH1-MH6) and case/source/.
+    mount:
+      key:
+        tags: [mount]
+        padding: 0
+        spread: 0
+      anchor:
+        ref: matrix_outer_bottom
+      columns:
+        m1:
+          key.shift: [8.68, 28.42]
+        m2:
+          key.shift: [46.67, 15.42]
+        m3:
+          key.shift: [105.17, 41.42]
+        m4:
+          key.shift: [128.18, -2.08]
+        m5:
+          key.shift: [65.67, -1.58]
+        m6:
+          key.shift: [125.17, -43.08]
 
 outlines:
   keys:
@@ -190,3 +215,9 @@ pcbs:
           include_traces_vias: true
           from: "{{colrow}}"
           to: "{{row_net}}"
+      mount_hole:
+        what: mounting_hole_npth
+        where: [mount]
+        params:
+          hole_size: '2.2'
+          hole_drill: '2.2'
