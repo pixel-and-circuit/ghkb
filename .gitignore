@@ -47,6 +47,5 @@ __pycache__/
 # macOS
 .DS_Store
 
-# KiCad lock/local files
+# KiCad lock files
 ~*.lck
-*.kicad_prl

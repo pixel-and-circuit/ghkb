@@ -111,14 +111,16 @@ progresses.
 │   └── libraries/
 ├── case/
 │   ├── source/
+│   │   ├── params.py
+│   │   ├── layout.py
+│   │   ├── ghkb_case.py
 │   │   ├── left.FCStd
 │   │   └── right.FCStd
-│   └── exports/
-│       ├── left.step
-│       ├── right.step
-│       ├── left.stl
-│       └── right.stl
-├── plate/
+│   ├── exports/
+│   │   ├── left.step / right.step
+│   │   └── {left,right}_{top,bottom}.stl
+│   └── reference/
+│       └── keyboard_pcba.step
 ├── docs/
 │   ├── assembly.md
 │   ├── wiring.md
@@ -134,9 +136,9 @@ config	Production ZMK firmware config (west manifest, keymap, custom ghkb shield
 firmware/tinygo	Experimental TinyGo firmware implementation.
 pcb	KiCad project files, schematics, PCB layout, and custom libraries.
 pcb/ergogen	Ergogen layout source (YAML) and reversible footprint library.
-case/source	Source CAD models for the enclosure.
-case/exports	Exported manufacturing files (STEP/STL).
-plate	Switch plate designs.
+case/source	Parametric enclosure build scripts (params/layout/ghkb_case.py) and the generated FreeCAD documents. The switch plate is integrated into the top shell, so there is no separate plate design. Rebuild everything with `freecadcmd case/source/ghkb_case.py`; the build asserts its geometry against the routed PCB and aborts on drift.
+case/exports	Exported manufacturing files (per-half STEP, print-ready top/bottom STLs).
+case/reference	kicad-cli STEP export of the routed PCB, used for interference checks.
 docs	Assembly guide, wiring documentation, and project images.
 bom	Bill of Materials used to build the keyboard.
 
@@ -144,7 +146,7 @@ Roadmap
 
 * Finalize the keyboard layout (42-key, 3x6+3 per half)
 * Design the PCB (single reversible board, ergogen + KiCad)
-* Design the enclosure
+* Design the enclosure (integrated-plate top shell + screwed lid, parametric FreeCAD build; v1 done, pending print validation)
 * Build the first prototype
 * Bring up ZMK firmware
 * Validate the hardware

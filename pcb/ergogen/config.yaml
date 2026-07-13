@@ -6,8 +6,11 @@ meta:
     Single reversible half of the GHKB wireless split keyboard.
     42 keys total (3x6 + 3 thumbs per half), MX hotswap, nice!nano,
     optional EC11 encoder on a dedicated position past the thumb fan.
-    Build one PCB with components on the front for the left half, and
-    one with components on the back for the right half.
+    Build one PCB with components on the front (F) for the RIGHT half,
+    and one with components on the back (B) for the LEFT half -- the
+    F-side silkscreen reads "R hand back side", matching the ceoloide
+    footprint convention. (Case geometry is unaffected either way:
+    components face the lid on both halves.)
 
 units:
   # MX spacing
