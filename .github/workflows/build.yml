@@ -4,17 +4,16 @@ on:
   push:
     branches: [trunk]
     paths:
-      - "firmware/zmk/**"
+      - "config/**"
+      - "build.yaml"
       - ".github/workflows/build.yml"
   pull_request:
     paths:
-      - "firmware/zmk/**"
+      - "config/**"
+      - "build.yaml"
       - ".github/workflows/build.yml"
   workflow_dispatch:
 
 jobs:
   build:
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
-    with:
-      build_matrix_path: firmware/zmk/build.yaml
-      config_path: firmware/zmk/config

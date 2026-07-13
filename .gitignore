@@ -17,14 +17,23 @@ node_modules/
 # ZMK / firmware build artifacts
 firmware/tinygo/build/
 
-# ZMK west workspace (topdir is firmware/zmk/ per config_path in
-# .github/workflows/build.yml). `west update` materializes module
-# directories here whose exact set depends on manifest groups
-# (zephyr/, modules/, zmk/, optional/, tools/, bootloader/, bin/, .west/, ...).
-# Ignore everything under firmware/zmk/ except our own tracked config.
-firmware/zmk/*
-!firmware/zmk/config/
-!firmware/zmk/build.yaml
+# ZMK west workspace. The repo root is the west topdir (config/ and
+# build.yaml live here, matching what zmkfirmware/zmk's reusable CI
+# workflow assumes - it runs `west update`/`west build` from the repo
+# root, so config_path/build_matrix_path can't point at a nested
+# subdirectory like firmware/zmk/config without breaking working-
+# directory discovery). `west update` materializes these here; the
+# exact set depends on manifest groups.
+/zephyr/
+/modules/
+/zmk/
+/optional/
+/tools/
+/bootloader/
+/bin/
+/build/
+/.west/
+/.dockerhome/
 
 # Autorouter intermediates
 *.dsn
