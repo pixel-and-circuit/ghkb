@@ -1,10 +1,13 @@
 # GitHub Actions build matrix for the ghkb ZMK firmware.
-# ghkb_left / ghkb_right shields are defined in GYE-269
-# (boards/shields/ghkb/) and don't exist yet, so this matrix
-# will fail to build until that shield lands.
+# `//zmk` is the required board variant qualifier as of ZMK's Zephyr 4.1
+# (HWMv2) migration - board IDs without it resolve to the "stock" board
+# and fail the workflow's explicit-ZMK-compat check even though they
+# happen to still build. Shorthand for nice_nano@2.0.0/nrf52840/zmk,
+# since 2.0.0 is the default revision and there's only one SoC.
+# See: https://zmk.dev/blog/2025/12/09/zephyr-4-1#zmk-board-variant
 ---
 include:
-  - board: nice_nano
+  - board: nice_nano//zmk
     shield: ghkb_left
-  - board: nice_nano
+  - board: nice_nano//zmk
     shield: ghkb_right
