@@ -201,5 +201,6 @@ def assert_against_board(path=BOARD_PATH, verbose=False):
 
 MOUNT_HOLES = assert_against_board()
 
-if __name__ == "__main__":
+# freecadcmd runs scripts with __name__ == "layout" (not "__main__")
+if __name__ in ("__main__", "layout"):
     assert_against_board(verbose=True)

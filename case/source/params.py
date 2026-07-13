@@ -36,6 +36,8 @@ PARAMS = {
     "tower_d": 6.0,                # lid tower, seats on the PCB bottom face
     "screw_clear_d": 2.3,          # M2 clearance through lid + tower
     "countersink_d": 4.2,          # 90 deg flat-head countersink in the lid
+    # screw: M2x14 flat head -- lid 2.4 + tower 6.5 + PCB 1.6 = 10.5 mm of
+    # travel before the insert, leaving ~3.5 mm of thread engagement
 
     # openings (positions derive from layout.MCU / layout.POWER / layout.RESET)
     "usb_w": 10.4,
@@ -43,7 +45,10 @@ PARAMS = {
     "usb_z_center": -8.45,
     "usb_chamfer": 1.0,
     "power_notch_w": 11.0,
-    "power_z_top": -6.3,
+    # notch reaches above the PCB top: the side-switch pads overhang the
+    # board edge by ~2.1 mm on both faces (reversible), so the wall must be
+    # open across the whole PCB seam, not just below it
+    "power_z_top": -4.9,
     "reset_hole_d": 3.6,
 
     # battery pocket (301230-class LiPo, one per half)
@@ -67,8 +72,13 @@ PARAMS = {
     "env_jst": (8.0, 6.5, 6.2),
     "env_reset": (7.0, 7.0, 4.5),
     "env_power": (7.5, 3.2, 1.7),
-    "env_socket": (19.0, 19.0, 1.9),
+    # hotswap socket: two strips per key (reversible board), footprint-local
+    # y in [2.0, 8.2] both signs, x within +-5.5, 1.9 tall below the PCB
+    "env_socket_strip": (11.0, 6.2, 1.9),
+    "env_socket_strip_dy": 5.1,
     "env_encoder_legs": (14.0, 15.0, 2.2),
+    # switch clip tabs: 5 wide, reach 0.8 past the N/S cutout edge, ~2 deep
+    "env_clip": (5.0, 0.8, 2.0),
 }
 
 
