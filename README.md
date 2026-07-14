@@ -1,5 +1,10 @@
 GHKB
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/case-preview-dark.png">
+  <img src="docs/images/case-preview.png" alt="GHKB split keyboard case, FreeCAD preview render of both halves" width="820">
+</picture>
+
 GHKB is an open-source split mechanical keyboard project focused on custom hardware, modern firmware, and long-term experimentation.
 
 The goal of this project is to build a fully custom wireless split keyboard from the ground up, including both the hardware and firmware stack. Rather than assembling an existing design, GHKB documents the complete engineering process—from PCB and enclosure design to firmware development.
@@ -114,6 +119,7 @@ progresses.
 │   │   ├── params.py
 │   │   ├── layout.py
 │   │   ├── ghkb_case.py
+│   │   ├── render_preview.py
 │   │   ├── left.FCStd
 │   │   └── right.FCStd
 │   ├── exports/
@@ -125,6 +131,7 @@ progresses.
 │   ├── assembly.md
 │   ├── wiring.md
 │   └── images/
+│       └── case-preview{,-dark}.png
 └── bom/
     └── bom.csv
 ```
@@ -136,7 +143,7 @@ config	Production ZMK firmware config (west manifest, keymap, custom ghkb shield
 firmware/tinygo	Experimental TinyGo firmware implementation.
 pcb	KiCad project files, schematics, PCB layout, and custom libraries.
 pcb/ergogen	Ergogen layout source (YAML) and reversible footprint library.
-case/source	Parametric enclosure build scripts (params/layout/ghkb_case.py) and the generated FreeCAD documents. The switch plate is integrated into the top shell, so there is no separate plate design. Rebuild everything with `freecadcmd case/source/ghkb_case.py`; the build asserts its geometry against the routed PCB and aborts on drift.
+case/source	Parametric enclosure build scripts (params/layout/ghkb_case.py) and the generated FreeCAD documents. The switch plate is integrated into the top shell, so there is no separate plate design. Rebuild everything with `freecadcmd case/source/ghkb_case.py`; the build asserts its geometry against the routed PCB and aborts on drift. `render_preview.py` regenerates the README preview images from the built FCStd documents (needs the FreeCAD GUI).
 case/exports	Exported manufacturing files (per-half STEP, print-ready top/bottom STLs).
 case/reference	kicad-cli STEP export of the routed PCB, used for interference checks.
 docs	Assembly guide, wiring documentation, and project images.
