@@ -97,6 +97,7 @@ progresses.
 ```
 .
 ├── README.md
+├── HARDWARE.md
 ├── LICENSE
 ├── .gitignore
 ├── config/
@@ -139,6 +140,7 @@ progresses.
 Directory Overview
 
 Directory	Description
+HARDWARE.md	Sourcing guide: full parts table with purchase links, PCB fab options, and assembly cautions.
 config	Production ZMK firmware config (west manifest, keymap, custom ghkb shield). Lives at the repo root because ZMK's reusable CI workflow expects config_path/build_matrix_path relative to the west topdir, which must be the repo root - not a nested subdirectory.
 firmware/tinygo	Experimental TinyGo firmware implementation.
 pcb	KiCad project files, schematics, PCB layout, and custom libraries.
