@@ -1,3 +1,6 @@
+# Copyright (c) 2026 GyeongHo Kim
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """GHKB case README preview renderer (docs/images/case-preview*.png).
 
 Arranges the built left/right FCStd halves as a split pair (thumbs inward,

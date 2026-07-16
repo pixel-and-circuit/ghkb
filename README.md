@@ -176,4 +176,22 @@ Whether you are interested in mechanical keyboards, embedded systems, TinyGo, ZM
 
 License
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is dual-licensed to ensure that anyone who uses, modifies, or sells
+GHKB — commercially or otherwise — must release their own source under the same
+copyleft terms.
+
+- **Software / firmware / source code** (everything in `config/`, `zmk/`,
+  `modules/`, `firmware/`, build scripts, documentation sources, etc.) is
+  licensed under the **GNU General Public License v3.0 (GPL-3.0)** — a strong
+  copyleft license. You may sell copies, but any distributed modified version
+  must be released as source under GPL-3.0. See the `LICENSE` file.
+
+- **Hardware designs** (`pcb/`, `case/`, including KiCad projects, schematics,
+  PCB layouts, footprints, and 3D-printed enclosure source) are licensed under
+  the **CERN Open Hardware Licence v2 – Strongly Reciprocal (CERN-OHL-S)**.
+  Any product or design derived from these must have its corresponding design
+  source made available under the same licence. See the `LICENSE-HARDWARE` file.
+
+In short: **commercial sale is allowed, but reciprocity is mandatory** — if you
+convey GHKB (or a derivative) to others, your modified software and hardware
+source must stay open under these licenses.

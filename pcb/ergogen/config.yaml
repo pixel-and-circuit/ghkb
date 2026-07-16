@@ -2,6 +2,7 @@ meta:
   name: ghkb
   version: 0.1.0
   author: GyeongHo Kim
+  license: CERN-OHL-S
   notes: >
     Single reversible half of the GHKB wireless split keyboard.
     42 keys total (3x6 + 3 thumbs per half), MX hotswap, nice!nano,

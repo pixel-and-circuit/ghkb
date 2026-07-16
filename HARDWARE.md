@@ -1,5 +1,14 @@
 # GHKB Hardware Sourcing
 
+> **License note:** the hardware designs in this repository (`pcb/`, `case/`,
+> KiCad projects, schematics, PCB layouts, footprints, and the 3D-printed
+> enclosure source) are licensed under the **CERN Open Hardware Licence v2 –
+> Strongly Reciprocal (CERN-OHL-S)**. You may manufacture and sell hardware
+> based on these designs, but any product or derived design you convey to others
+> must have its corresponding design source made available under CERN-OHL-S.
+> See `LICENSE-HARDWARE`. (Software/firmware is separately licensed under
+> GPL-3.0 — see `LICENSE`.)
+
 조달용 부품 목록. 기준: `pcb/keyboard.kicad_pcb`(리버서블 1종)과
 `case/source/params.py`의 v1 설계. 수량은 **양쪽 하프 합산 기준**이며,
 소모품(다이오드/소켓/나사)은 여유분을 포함해 사는 것을 전제로 팩 단위
