@@ -1,3 +1,6 @@
+# Copyright (c) 2026 GyeongHo Kim
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """GHKB key/feature layout, recomputed from the ergogen parameters.
 
 Single source of geometry for the case build. Every anchor this module

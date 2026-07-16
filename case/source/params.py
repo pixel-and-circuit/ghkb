@@ -1,3 +1,6 @@
+# Copyright (c) 2026 GyeongHo Kim
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """GHKB case parameters. All lengths in millimetres, ergogen frame (y-up).
 
 Vertical datum: z = 0 at the plate/shell top face, +z up. The stack:

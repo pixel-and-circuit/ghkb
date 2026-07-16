@@ -1,3 +1,6 @@
+# Copyright (c) 2026 GyeongHo Kim
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """GHKB case builder: integrated top shell (plate) + bottom lid, both halves.
 
 Run headless:   freecadcmd case/source/ghkb_case.py

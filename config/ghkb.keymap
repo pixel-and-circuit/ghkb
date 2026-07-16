@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2026 pixel-and-circuit
- * SPDX-License-Identifier: MIT
+ * Copyright (c) 2026 GyeongHo Kim
+ * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 #include <behaviors.dtsi>
